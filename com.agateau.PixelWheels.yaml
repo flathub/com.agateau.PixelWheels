@@ -9,14 +9,15 @@ finish-args:
   - --socket=x11
   - --socket=pulseaudio
   - --device=dri
+  - --persist=.local/share/pixelwheels
 modules:
   - name: pixelwheels
     sources:
       - type: archive
         only-arches:
           - x86_64
-        sha256: 24460d8a0d7bd44fd8982f7d4a93f1a8d8b9ae0f7eee2d453c0b0e4c9cdc7179
-        url: https://github.com/agateau/pixelwheels/releases/download/0.23.0/pixelwheels-0.23.0-linux64.zip
+        sha256: c83c8ec147044695d123778055962eb2338dc0d85e5478ca9386eae6fa63c19b
+        url: https://github.com/agateau/pixelwheels/releases/download/0.24.0/pixelwheels-0.24.0-linux64.zip
         dest: pixelwheels
       - type: file
         path: com.agateau.PixelWheels.metainfo.xml
@@ -27,9 +28,6 @@ modules:
       - mv ./pixelwheels/share /app/share
       # Flatpak does not like 1024x1024 icons
       - rm -rf /app/share/icons/hicolor/1024x1024
-
-      # Remove this next time if metainfo has been updated in time for the release :)
-      - install -Dm644 com.agateau.PixelWheels.metainfo.xml /app/share/metainfo/com.agateau.PixelWheels.metainfo.xml
 
       - mv ./pixelwheels /app/lib/pixelwheels
 
