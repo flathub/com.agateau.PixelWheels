@@ -16,8 +16,8 @@ modules:
       - type: archive
         only-arches:
           - x86_64
-        sha256: 9b565efa7ab185dac70994b3e9b271440022fb30df62a8f9ce881240dbc1d33b
-        url: https://github.com/agateau/pixelwheels/releases/download/0.24.1/pixelwheels-0.24.1-linux64.zip
+        sha256: 60d3338807c7d83e143e2b82b29711dba2652844a3e8032ec84921c20177c5ec
+        url: https://github.com/agateau/pixelwheels/releases/download/0.24.2/pixelwheels-0.24.2-linux64.zip
         dest: pixelwheels
     buildsystem: simple
     build-commands:
