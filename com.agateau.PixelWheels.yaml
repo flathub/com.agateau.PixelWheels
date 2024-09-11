@@ -16,9 +16,11 @@ modules:
       - type: archive
         only-arches:
           - x86_64
-        sha256: a27c7e6929ae1be4a3e39d408d88f1fe75060006271cdaf6678841bdb510425c
-        url: https://github.com/agateau/pixelwheels/releases/download/0.25.1/pixelwheels-0.25.1-linux64.zip
+        sha256: ba31265c00e5928ff9cd4c320c92c33b513baff2e747c6e14d12c39032db6e37
+        url: https://github.com/agateau/pixelwheels/releases/download/0.26.0/pixelwheels-0.26.0-linux64.zip
         dest: pixelwheels
+      - type: file
+        path: com.agateau.PixelWheels.metainfo.xml
     buildsystem: simple
     build-commands:
       - mkdir /app/lib/
@@ -26,6 +28,9 @@ modules:
       - mv ./pixelwheels/share /app/share
       # Flatpak does not like 1024x1024 icons
       - rm -rf /app/share/icons/hicolor/1024x1024
+
+      # Required because 0.26.0 metainfo file does not pass linter
+      - install -Dm644 -t /app/share/metainfo com.agateau.PixelWheels.metainfo.xml
 
       - mv ./pixelwheels /app/lib/pixelwheels
 
