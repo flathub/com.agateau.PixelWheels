@@ -8,8 +8,14 @@ Edit `com.agateau.PixelWheels.yaml`, update `url` and `sha256` fields.
 make
 ```
 
-## Test
+## Run tests
 
 ```
 make test
+```
+
+## Run app
+
+```
+make run
 ```
