@@ -3,22 +3,30 @@ default-branch: stable
 runtime: org.freedesktop.Platform
 runtime-version: "23.08"
 sdk: org.freedesktop.Sdk
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.openjdk11
 command: pixelwheels
 finish-args:
   - --share=ipc
   - --socket=x11
   - --socket=pulseaudio
   - --device=dri
+  - --env=PATH=/app/bin:/app/jre/bin:/usr/bin
+  - --env=JAVA_HOME=/app/jre
   - --persist=.local/share/pixelwheels
 modules:
+  - name: openjdk
+    buildsystem: simple
+    build-commands:
+      - /usr/lib/sdk/openjdk11/install.sh
   - name: pixelwheels
     sources:
       - type: archive
-        only-arches:
-          - x86_64
         sha256: ba31265c00e5928ff9cd4c320c92c33b513baff2e747c6e14d12c39032db6e37
         url: https://github.com/agateau/pixelwheels/releases/download/0.26.0/pixelwheels-0.26.0-linux64.zip
         dest: pixelwheels
+      - type: file
+        path: pixelwheels.sh
       - type: file
         path: com.agateau.PixelWheels.metainfo.xml
     buildsystem: simple
@@ -29,10 +37,13 @@ modules:
       # Flatpak does not like 1024x1024 icons
       - rm -rf /app/share/icons/hicolor/1024x1024
 
+      # Remove bundled jre
+      - rm -rf ./pixelwheels/jre
+
       # Required because 0.26.0 metainfo file does not pass linter
       - install -Dm644 -t /app/share/metainfo com.agateau.PixelWheels.metainfo.xml
 
       - mv ./pixelwheels /app/lib/pixelwheels
 
       - mkdir /app/bin/
-      - ln -s /app/lib/pixelwheels/pixelwheels /app/bin/pixelwheels
+      - install -Dm755 ./pixelwheels.sh /app/bin/pixelwheels
