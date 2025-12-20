@@ -22,8 +22,8 @@ modules:
   - name: pixelwheels
     sources:
       - type: archive
-        sha256: 352b699ba656440fd2d66a9f6c38f97edc9738930d510afdb4c0c72d29067ff8
-        url: https://github.com/agateau/pixelwheels/releases/download/1.0.0-rc.1/pixelwheels-1.0.0-rc.1-linux64.zip
+        sha256: 48c4783b7cdb4db87da8b13e00dbdddabd51287e37e326388a8d504a1f3c6dde
+        url: https://github.com/agateau/pixelwheels/releases/download/1.0.1/pixelwheels-1.0.1-linux64.zip
         dest: pixelwheels
       - type: file
         path: pixelwheels.sh
